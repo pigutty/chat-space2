@@ -1,0 +1,46 @@
+.wrapper
+  = render 'side-bar'
+  .chat
+    .header
+      .left-header
+        .group-name
+          グループ名
+        %ul.group-members
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+          %li.member
+            メンバー名
+      .right-header
+        .right-header__button
+          edit
+    .messages
+      .message
+        .message__upper
+          .message__upper__user
+            test-user
+          .message__upper__date
+            2019.09.08
+        .message__lower
+          こんにちは！
+      .message
+        .message__upper
+          .message__upper__user
+          .message__upper__date
+        .message__lower
+      .message
+        .message__upper
+          .message__upper__user
+          .message__upper__date
+        .message__lower
+    .form
+      %form.new_message
+        .new_message__input
+          %input.new_message__input__text{type: 'text',placeholder:'text'}
+          .new_message__input__label
+            %i.fa.fa-image
+            %input.new_message__input__label__image{type:'file'}
+        .new_message__submit{type:'submit'}
+          send
+
