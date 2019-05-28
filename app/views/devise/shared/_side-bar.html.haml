@@ -1,0 +1,19 @@
+.side-bar
+  .header
+    .header__name
+      = current_user.name
+    %ul.header__lists
+      %li.list
+        = link_to new_group_path do
+          %i.fa.fa-edit
+      %li.list
+        = link_to edit_user_registration_path(current_user.id) do
+          %i.fa.fa-cog
+  .groups
+    -current_user.groups.each do |group|
+      .group
+        =link_to group_messages_path(group) do
+          .group__name
+            = group.name
+          .group__message
+            新着メッセージ
