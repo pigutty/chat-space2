@@ -15,25 +15,8 @@
       .right-header
         = link_to  edit_group_path(@group) do
           .right-header__button edit
-    .messages
-      .message
-        .message__upper
-          .message__upper__user
-            test-user
-          .message__upper__date
-            2019.09.08
-        .message__lower
-          こんにちは！
-      .message
-        .message__upper
-          .message__upper__user
-          .message__upper__date
-        .message__lower
-      .message
-        .message__upper
-          .message__upper__user
-          .message__upper__date
-        .message__lower
+    .messages 
+      = render @messages
     .form
       = form_for [@group, @message] do |f|
         .new_message__input
