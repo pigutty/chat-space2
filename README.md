@@ -39,7 +39,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false|
+|id|integer|null: false,|
 |name|string|null: false|
 |email|string|null: false, unique: true|
 |passward|string|null: false|

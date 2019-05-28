@@ -1,0 +1,13 @@
+.notification {
+  .notice {
+    background-color: $alert_success;
+    color: $alert_font_color;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: $alert_failure;
+    color: $alert_font_color;
+    text-align: center;
+  }
+}

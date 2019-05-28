@@ -1,13 +1,13 @@
 .side-bar
   .header
     .header__name
-      ユーザーネーム
+      = current_user.name
     %ul.header__lists
       %li.list
         = link_to do
           %i.fa.fa-edit
       %li.list
-        = link_to do
+        = link_to edit_user_registration_path(current_user.id) do
           %i.fa.fa-cog
   .groups
     .group
