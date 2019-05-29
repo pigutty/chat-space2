@@ -4,14 +4,12 @@
     .header
       .left-header
         .group-name
-          グループ名
+          = @group.name
         %ul.group-members
           %li.member
-            メンバー名
-          %li.member
-            メンバー名
-          %li.member
-            メンバー名
+            Member:
+            - @group.users.each do |u|
+              = u.name
       .right-header
         = link_to  edit_group_path(@group) do
           .right-header__button edit
