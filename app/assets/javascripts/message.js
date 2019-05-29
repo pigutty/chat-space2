@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load',function(){
+$(document).on('turbolinks:load', function(){
   function buildHTML(message){
     var image = (message.image !== null)? `<img src="${message.image}" class="content__message__image"></img>` : "" ;
     var html = `<div class="message">
@@ -13,7 +13,6 @@ $(document).on('turbolinks:load',function(){
       return html;
   }
   $('#new_message').on('submit',function(e){
-    e.preventDefault();
     var formData = new FormData(this);
     var send_url = $(this).attr('action');
     $.ajax({
@@ -27,10 +26,13 @@ $(document).on('turbolinks:load',function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
+      var height = $('.messages')[0].scrollHeight;
+      $('.messages').animate({scrollTop:height});
       $('#new_message')[0].reset();
     })
     .fail(function(){
-      console.log("失敗");
+      alert('メッセージの送信に失敗しました。');
     })
+    return false;
   });
 });
