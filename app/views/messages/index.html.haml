@@ -13,35 +13,15 @@
           %li.member
             メンバー名
       .right-header
-        .right-header__button
-          = link_to  edit_group_path(group) do
-            edit
-    .messages
-      .message
-        .message__upper
-          .message__upper__user
-            test-user
-          .message__upper__date
-            2019.09.08
-        .message__lower
-          こんにちは！
-      .message
-        .message__upper
-          .message__upper__user
-          .message__upper__date
-        .message__lower
-      .message
-        .message__upper
-          .message__upper__user
-          .message__upper__date
-        .message__lower
+        = link_to  edit_group_path(@group) do
+          .right-header__button edit
+    .messages 
+      = render @messages
     .form
-      %form.new_message
+      = form_for [@group, @message] do |f|
         .new_message__input
-          %input.new_message__input__text{type: 'text',placeholder:'text'}
-          .new_message__input__label
+          = f.text_field :content, class: 'new_message__input__text', placeholder: 'type a message'
+          = f.label :image, class: 'new_message__input__label' do
             %i.fa.fa-image
-            %input.new_message__input__label__image{type:'file'}
-        .new_message__submit{type:'submit'}
-          send
-
+            = f.file_field :image, class: 'new_message__input__label__image'
+        =f.submit 'Send', class: 'new_message__submit'

@@ -26,18 +26,24 @@
     }
     .right-header{
       float: right;
-      padding: 0 20px;
-      margin-top: 28px;
-      height: 40px;
-      line-height: 40px; 
-      color: $button;
-      border: solid 1px $button;
+      a{
+        text-decoration: none;
+        .right-header__button{
+          padding: 0 20px;
+          margin-top: 28px;
+          height: 40px;
+          line-height: 40px; 
+          color: $button;
+          border: solid 1px $button;
+        }
+      }
     }
   }
   .messages{
     overflow: scroll;
     height: calc(100vh - 190px);
     padding: 6px 20px 0 20px;
+    box-sizing: border-box;
     .message{
       padding: 40px 0 0 20px;
       &__upper{
@@ -87,6 +93,9 @@
           top: 10px;
           right: 10px;
           font-size: $font_new_message_label;
+          .fa.fa-image{
+            cursor: pointer;
+          }
           &__image{
             display: none;
           }
