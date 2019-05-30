@@ -15,6 +15,15 @@ $(document).on('turbolinks:load',function(){
       $('#user-search-result').append(html);
     }
 
+    function addUser(userId, userName){
+      var html = `<div id='chat-group-users'>
+                    <div class='chat-group-user clearfix js-chat-member' id='${userId}'>
+                      <input name='group[user_ids][]' type='hidden' value='${userId}'>
+                        <p class='chat-group-user__name'>${userName}</p>
+                        <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                      </div>`;
+      $('#chat-group-users').append(html);
+    }
 
     function editElement(element){
       var result = '^'+element;
@@ -49,5 +58,13 @@ $(document).on('turbolinks:load',function(){
       })
     }
     preWord = word;
+  });
+
+  $(document).on("click", ".user-search-add", function (){
+    $('#chat-group-users').val();
+    var user_id = $(this).attr('data-user-id');
+    var user_name = $(this).attr('data-user-name');
+    addUser(user_id, user_name);
+    $(this).parent().remove();
   });
 });
