@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load',function(){
-  $('#user-search-field').on('keyup',function(){
     function appendUser(user) {
       var html = `<div class="chat-group-user clearfix">
                     <p class="chat-group-user__name">${user.name}</p>
@@ -15,21 +14,24 @@ $(document).on('turbolinks:load',function(){
       $('#user-search-result').append(html);
     }
 
-    function addUser(userId, userName){
+    function addUser(userId,userName) {
       var html = `<div id='chat-group-users'>
                     <div class='chat-group-user clearfix js-chat-member' id='${userId}'>
                       <input name='group[user_ids][]' type='hidden' value='${userId}'>
                         <p class='chat-group-user__name'>${userName}</p>
                         <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
-                      </div>`;
+                    </div>
+                  </div>`
       $('#chat-group-users').append(html);
     }
+
 
     function editElement(element){
       var result = '^'+element;
       return result;
     }
     var preWord;
+    $('#user-search-field').on('keyup',function(){
     var input = $('#user-search-field').val();
     var inputs = input.split(" ").filter(function(a) { return a;});
     var newInputs = inputs.map(editElement);
@@ -67,4 +69,8 @@ $(document).on('turbolinks:load',function(){
     addUser(user_id, user_name);
     $(this).parent().remove();
   });
+
+  $(document).on("click", ".user-search-remove", function(){
+    $(this).parent().remove();
+  })
 });
