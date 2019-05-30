@@ -31,6 +31,7 @@ $(document).on('turbolinks:load',function(){
       return result;
     }
     var preWord;
+    
     $('#user-search-field').on('keyup',function(){
     var input = $('#user-search-field').val();
     var inputs = input.split(" ").filter(function(a) { return a;});
@@ -46,13 +47,15 @@ $(document).on('turbolinks:load',function(){
       })
       .done(function(users) {
         $('#user-search-result').empty();
-        if (users.length !== 0) {
-          users.forEach(function(user){
-            appendUser(user);
-          });
-        }
-        else {
-          appendErrMsgToHTML('一致するユーザーはいません');
+        if (input.length !== 0){
+          if (users.length !== 0) {
+            users.forEach(function(user){
+              appendUser(user);
+            });
+          }
+          else {
+            appendErrMsgToHTML('一致するユーザーはいません');
+          }
         }
       })
       .fail(function(){
@@ -64,10 +67,24 @@ $(document).on('turbolinks:load',function(){
 
   $(document).on("click", ".user-search-add", function (){
     $('#chat-group-users').val();
-    var user_id = $(this).attr('data-user-id');
-    var user_name = $(this).attr('data-user-name');
-    addUser(user_id, user_name);
-    $(this).parent().remove();
+    var newuser = $(this);
+    var user_id = $(newuser).attr('data-user-id');
+    var user_name = $(newuser).attr('data-user-name');
+    var testuser = $('.chat-group-user.clearfix.js-chat-member');
+    if (testuser.length ==0) {
+      addUser(user_id, user_name);
+      $(newuser).parent().remove();
+    } else {
+      $(testuser).each(function(index, e) {
+        var id = $(e).attr('id');
+        if( user_id !== id ) {
+        addUser(user_id, user_name);
+        $(newuser).parent().remove();
+        } else {
+          $(newuser).parent().remove();
+        }
+      })
+    }
   });
 
   $(document).on("click", ".user-search-remove", function(){
