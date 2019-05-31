@@ -50,13 +50,21 @@ $(document).on('turbolinks:load', function(){
       processData: false,
       contentType: false
     })
-    .done(function(){
-      console.log('success');
+    .done(function(messages){
+      var insertHTML = '';
+      messages.forEach(function(message){
+        if(message.id > last_message_id) {
+          insertHTML += buildHTML(message);
+        }
+      })
+      $('.messages').append(insertHTML);
+      var height = $('.messages')[0].scrollHeight;
+      $('.messages').animate({scrollTop:height});
     })
     .fail(function(){
       console.log('fail');
     })
-  }
+  };
 
   var interval = setInterval(function(){
     reloadMessages();
