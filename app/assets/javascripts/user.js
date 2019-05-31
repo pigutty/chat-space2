@@ -82,7 +82,6 @@ $(document).on('turbolinks:load',function(){
         $(newuser).parent().remove();
         } else {
           $(newuser).parent().remove();
-          alert('すでにこのユーザーは登録されています');
         }
       })
     }
