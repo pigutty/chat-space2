@@ -62,16 +62,17 @@ $(document).on('turbolinks:load', function(){
       $('.messages').animate({scrollTop:height});
     })
     .fail(function(){
-      console.log('fail');
+      alert('自動更新に失敗しました');
     })
   };
 
-  var interval = setInterval(function(){
+  var group_view_url_pattern = /\/groups\/\d+\/messages/;
+  var result = window.location.href.match(group_view_url_pattern);
+  var interval = setInterval(function() {
+  if (result){
     reloadMessages();
-    // if () {
-    //   reloadMessages()
-    // } else {
-    //   clearInterval(interval);
-    // }
-  }, 5000 );
+  }
+  else {
+    clearInterval(interval);
+  }} ,5000)
 });
