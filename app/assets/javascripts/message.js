@@ -36,10 +36,32 @@ $(document).on('turbolinks:load', function(){
     return false;
   });
   
+
+
+  var reloadMessages = function() {
+    last_message_id = $('.message').eq(-1).attr('data-id');
+    reload_url_pattern = /messages/;
+    api_url = window.location.href.replace(reload_url_pattern,'api/messages');
+    $.ajax({
+      url: api_url,
+      type: "GET",
+      dataType: 'json',
+      data: { last_id: last_message_id },
+      processData: false,
+      contentType: false
+    })
+    .done(function(){
+      console.log('success');
+    })
+    .fail(function(){
+      console.log('fail');
+    })
+  }
+
   var interval = setInterval(function(){
-    console.log('check');
+    reloadMessages();
     // if () {
-    //   reloadMessage()
+    //   reloadMessages()
     // } else {
     //   clearInterval(interval);
     // }
