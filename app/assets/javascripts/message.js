@@ -35,4 +35,13 @@ $(document).on('turbolinks:load', function(){
     })
     return false;
   });
+  
+  var interval = setInterval(function(){
+    console.log('check');
+    // if () {
+    //   reloadMessage()
+    // } else {
+    //   clearInterval(interval);
+    // }
+  }, 5000 );
 });
