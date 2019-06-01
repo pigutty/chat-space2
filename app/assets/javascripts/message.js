@@ -39,7 +39,7 @@ $(document).on('turbolinks:load', function(){
 
 
   var reloadMessages = function() {
-    last_message_id = $('.message').eq(-1).attr('data-id');
+    last_message_id = $('.message').eq(-1).data('id');
     reload_url_pattern = /messages/;
     api_url = window.location.href.replace(reload_url_pattern,'api/messages');
     $.ajax({
