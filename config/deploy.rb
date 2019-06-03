@@ -10,7 +10,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
 
 set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/key_pair.pem']  ※例：~/.ssh/key_pem.pem
+                  keys: ['~/.ssh/key_pair.pem']  
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
