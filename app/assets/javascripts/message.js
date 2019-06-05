@@ -66,13 +66,13 @@ $(document).on('turbolinks:load', function(){
     })
   };
 
-  var group_view_url_pattern = /\/groups\/\d+\/messages/;
-  var result = window.location.href.match(group_view_url_pattern);
   var interval = setInterval(function() {
-  if (result){
-    reloadMessages();
-  }
-  else {
-    clearInterval(interval);
-  }} ,5000)
+    var group_view_url_pattern = /\/groups\/\d+\/messages/;
+    var result = window.location.href.match(group_view_url_pattern);
+    if (result){
+      reloadMessages();
+    }
+    else {
+      clearInterval(interval);
+    }} ,5000)
 });
