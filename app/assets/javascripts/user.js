@@ -47,10 +47,22 @@ $(document).on('turbolinks:load',function(){
       })
       .done(function(users) {
         $('#user-search-result').empty();
+        var testusers = $('.chat-group-user.clearfix.js-chat-member');
         if (input.length !== 0){
           if (users.length !== 0) {
             users.forEach(function(user){
-              appendUser(user);
+              if (testusers.length ==0) {
+                appendUser(user);
+              }
+              else {
+                $(testusers).each(function(index, testuser){
+                var id = $(testuser).attr('id');
+                var user_id = $(user).attr('id');
+                  if ( user_id != id ) {
+                    appendUser(user);
+                  }
+                })
+              }
             });
           }
           else {
@@ -67,24 +79,10 @@ $(document).on('turbolinks:load',function(){
 
   $(document).on("click", ".user-search-add", function (){
     $('#chat-group-users').val();
-    var newuser = $(this);
-    var user_id = $(newuser).attr('data-user-id');
-    var user_name = $(newuser).attr('data-user-name');
-    var testuser = $('.chat-group-user.clearfix.js-chat-member');
-    if (testuser.length ==0) {
-      addUser(user_id, user_name);
-      $(newuser).parent().remove();
-    } else {
-      $(testuser).each(function(index, e) {
-        var id = $(e).attr('id');
-        if( user_id !== id ) {
-        addUser(user_id, user_name);
-        $(newuser).parent().remove();
-        } else {
-          $(newuser).parent().remove();
-        }
-      })
-    }
+    var user_id = $(this).attr('data-user-id');
+    var user_name = $(this).attr('data-user-name');
+    addUser(user_id, user_name);
+    $(this).parent().remove();
   });
 
   $(document).on("click", ".user-search-remove", function(){
