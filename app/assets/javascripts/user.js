@@ -1,37 +1,28 @@
-function appendUser(user) {
-  var html = `<div class="chat-group-user clearfix">
-                <p class="chat-group-user__name">${user.name}</p>
-                <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>
-              </div>`
-  $('#user-search-result').append(html);
-}
-
-function appendErrMsgToHTML(msg) {
-  var html = `<div class="chat-group-user clearfix>
-                <p class="chat-group-user__name">${msg}</p>
-              </div>`
-  $('#user-search-result').append(html);
-}
-
-function addUser(userId,userName) {
-  var html = `<div id='chat-group-users'>
-                <div class='chat-group-user clearfix js-chat-member' id='${userId}'>
-                  <input name='group[user_ids][]' type='hidden' value='${userId}'>
-                    <p class='chat-group-user__name'>${userName}</p>
-                    <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
-                </div>
-              </div>`
-  $('#chat-group-users').append(html);
-}
-
-
-function editElement(element){
-  var result = '^'+element;
-  return result;
-}
-var preWord;
-
 $(document).on('turbolinks:load',function(){
+  function appendUser(user) {
+    var html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${user.name}</p>
+                  <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>
+                </div>`
+    $('#user-search-result').append(html);
+  }
+
+  function appendErrMsgToHTML(msg) {
+    var html = `<div class="chat-group-user clearfix>
+                  <p class="chat-group-user__name">${msg}</p>
+                </div>`
+    $('#user-search-result').append(html);
+  }
+
+
+
+
+  function editElement(element){
+    var result = '^'+element;
+    return result;
+  }
+  var preWord;
+
 
   $('#user-search-field').on('keyup',function(){
     var input = $('#user-search-field').val();
@@ -52,17 +43,20 @@ $(document).on('turbolinks:load',function(){
         if (input.length !== 0){
           if (users.length !== 0) {
             users.forEach(function(user){
-              if (testusers.length ==0) {
-                appendUser(user);
-              }
-              else {
-                $(testusers).each(function(index, testuser){
+              var userbox = [];
+              console.log(userbox);
+              var user_id = $(user).attr('id');
+              console.log(user_id);
+              $(testusers).each(function(index, testuser){
                 var id = $(testuser).attr('id');
-                var user_id = $(user).attr('id');
-                  if ( user_id != id ) {
-                    appendUser(user);
-                  }
-                })
+                if ( user_id = id ) {
+                  $(userbox).append(user);
+                }
+              })
+              if (userbox.length = 0) {
+                appendUser(user)
+              } else{
+                appendErrMsgToHTML('一致するユーザーはいません');
               }
             });
           }
@@ -80,7 +74,17 @@ $(document).on('turbolinks:load',function(){
 });
 
 $(document).on("click", ".user-search-add", function (){
+  function addUser(userId,userName) {
+    var html = `<div class='chat-group-user clearfix js-chat-member' id='${userId}'>
+                    <input name='group[user_ids][]' type='hidden' value='${userId}'>
+                      <p class='chat-group-user__name'>${userName}</p>
+                      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                  </div>`
+    $('#chat-group-users').append(html);
+  }
+
   $('#chat-group-users').val();
+  console.log(this);
   var user_id = $(this).attr('data-user-id');
   var user_name = $(this).attr('data-user-name');
   addUser(user_id, user_name);
