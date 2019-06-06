@@ -41,7 +41,6 @@ $(document).on('turbolinks:load', function(){
     var last_id = $('.message').eq(-1).data('id');
     reload_url_pattern = /messages/;
     var api_url = window.location.pathname.replace(reload_url_pattern,'api/messages');
-    console.log(api_url);
     $.ajax({
       type: "GET",
       url: api_url,
@@ -49,7 +48,7 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json',
     })
     .done(function(messages){
-      console.log(messages);
+      .log(messages);
       var insertHTML = '';
       messages.forEach(function(message){
         if(message.id > last_id) {
