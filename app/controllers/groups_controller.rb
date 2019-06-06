@@ -6,7 +6,6 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    @group.users << current_user
   end
 
   def create
@@ -14,7 +13,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to root_path, notice: 'グループを作成しました'
     else
-      render :new
+      render :new, notice: 'グループ名を登録してください'
     end
   end
 
@@ -23,7 +22,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to group_messages_path(@group), notide: 'グループを編集しました'
+      redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
       render :edit
     end
