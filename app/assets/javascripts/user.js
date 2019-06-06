@@ -44,16 +44,15 @@ $(document).on('turbolinks:load',function(){
           if (users.length !== 0) {
             users.forEach(function(user){
               var userbox = [];
-              console.log(userbox);
               var user_id = $(user).attr('id');
-              console.log(user_id);
               $(testusers).each(function(index, testuser){
                 var id = $(testuser).attr('id');
-                if ( user_id = id ) {
-                  $(userbox).append(user);
+                if ( user_id == id ) {
+                  userbox.push(user)
                 }
               })
-              if (userbox.length = 0) {
+              console.log(userbox);
+              if (userbox.length == 0) {
                 appendUser(user)
               } else{
                 appendErrMsgToHTML('一致するユーザーはいません');
