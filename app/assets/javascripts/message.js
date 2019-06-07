@@ -48,7 +48,6 @@ $(document).on('turbolinks:load', function(){
       dataType: 'json',
     })
     .done(function(messages){
-      .log(messages);
       var insertHTML = '';
       messages.forEach(function(message){
         if(message.id > last_id) {
