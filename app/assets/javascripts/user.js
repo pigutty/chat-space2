@@ -51,7 +51,6 @@ $(document).on('turbolinks:load',function(){
                   userbox.push(user)
                 }
               })
-              console.log(userbox);
               if (userbox.length == 0) {
                 appendUser(user)
               } else{
@@ -83,7 +82,6 @@ $(document).on("click", ".user-search-add", function (){
   }
 
   $('#chat-group-users').val();
-  console.log(this);
   var user_id = $(this).attr('data-user-id');
   var user_name = $(this).attr('data-user-name');
   addUser(user_id, user_name);
